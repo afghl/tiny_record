@@ -1,5 +1,8 @@
+require 'arel'
+
 require "tiny_record/version"
 require "tiny_record/engine"
+require "tiny_record/querying"
 require "tiny_record/base"
 
 module TinyRecord

@@ -1,7 +1,19 @@
 module TinyRecord
   class Base
-    def say_hi
-      
+    extend Querying
+
+    class << self
+      def all
+        table
+      end
+
+      def table_name
+        name.downcase + "s"
+      end
+
+      def table
+        Arel::Table.new(table_name)
+      end
     end
   end
 end
