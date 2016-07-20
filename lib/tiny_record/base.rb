@@ -1,18 +1,17 @@
 module TinyRecord
   class Base
-    extend Querying
 
     class << self
       def all
-        table
+        arel_table.project Arel.sql('*')
       end
 
       def table_name
         name.downcase + "s"
       end
 
-      def table
-        Arel::Table.new(table_name)
+      def arel_table
+        @arel_table ||= Arel::Table.new(table_name, ConnectionAdapters::Mysql2Engine.new)
       end
     end
   end
