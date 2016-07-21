@@ -16,7 +16,7 @@ describe TinyRecord, "database connection" do
     end.not_to raise_error
   end
 
-  xit "can get columns information" do
+  it "can get columns information" do
     expect(Post.connection.columns(Post.table_name)).to be_a Array
   end
 end

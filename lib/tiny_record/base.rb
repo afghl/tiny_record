@@ -7,11 +7,11 @@ module TinyRecord
       end
 
       def all
-        arel_table.project Arel.sql('*')
+        arel_table.project Arel.sql("*")
       end
 
       def where(opt)
-        arel_table.where(arel_table[:id].eq(2))
+        arel_table.where(arel_table[:id].eq(2)).project Arel.sql("*")
       end
 
       def table_name

@@ -23,6 +23,10 @@ module TinyRecord
         true
       end
 
+      def quote(value, column)
+        "'#{value.to_s}'"
+      end
+
       def schema_cache
         @schema_cache ||= SchemaCache.new(self)
       end
@@ -30,8 +34,12 @@ module TinyRecord
       def columns(table_name)
         sql = "SHOW FULL FIELDS FROM #{table_name}"
 
-        result = execute sql
-        p result.first
+        results = execute sql
+        results.each do |row|
+          p row
+        end
+
+        results.to_a
         # execute_and_free(sql, 'SCHEMA') do |result|
         #   each_hash(result).map do |field|
         #     field_name = set_field_encoding(field[:Field])
