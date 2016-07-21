@@ -2,8 +2,16 @@ module TinyRecord
   class Base
 
     class << self
+      def connection
+        @connection ||= ConnectionAdapters::Mysql2Adapter.new
+      end
+
       def all
         arel_table.project Arel.sql('*')
+      end
+
+      def where(opt)
+        arel_table.where(arel_table[:id].eq(2))
       end
 
       def table_name
@@ -11,7 +19,7 @@ module TinyRecord
       end
 
       def arel_table
-        @arel_table ||= Arel::Table.new(table_name, ConnectionAdapters::Mysql2Engine.new)
+        @arel_table ||= Arel::Table.new(table_name, self)
       end
     end
   end

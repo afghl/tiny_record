@@ -22,4 +22,8 @@ describe TinyRecord, "sql generate" do
   it "generate correct sql in all method" do
     expect(Post.all.to_sql).to eq "SELECT * FROM posts"
   end
+
+  xit "can generate correct sql with where condition" do
+    expect(Post.where(id: 2).to_sql).to eq "SELECT * FROM posts WHERE id = 2"
+  end
 end
