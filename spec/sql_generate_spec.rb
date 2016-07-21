@@ -26,4 +26,6 @@ describe TinyRecord, "sql generate" do
   it "can generate correct sql with where condition" do
     expect(Post.where(id: 2).to_sql).to eq "SELECT * FROM posts WHERE posts.id = '2'"
   end
+
+  
 end

@@ -4,8 +4,8 @@ module TinyRecord
   # table schema from db/schema.rb when the app launch.
   # here we use this class to simplify the implementation.
   class SchemaCache
-    def initialize connection
-      @connection   = connection
+    def initialize(connection)
+      @connection = connection
     end
 
     def table_exists?(table_name)

@@ -35,17 +35,7 @@ module TinyRecord
         sql = "SHOW FULL FIELDS FROM #{table_name}"
 
         results = execute sql
-        results.each do |row|
-          p row
-        end
-
         results.to_a
-        # execute_and_free(sql, 'SCHEMA') do |result|
-        #   each_hash(result).map do |field|
-        #     field_name = set_field_encoding(field[:Field])
-        #     new_column(field_name, field[:Default], field[:Type], field[:Null] == "YES", field[:Collation], field[:Extra])
-        #   end
-        # end
       end
 
       def execute(sql)
