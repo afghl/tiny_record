@@ -39,7 +39,9 @@ module TinyRecord
       end
 
       def execute(sql)
-        @client.query sql
+        results = @client.query sql
+        p results.to_a
+        results
       end
 
     end

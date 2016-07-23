@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe TinyRecord, "sql generate" do
-  before do
-    class Post < TinyRecord::Base; end
-    class User < TinyRecord::Base; end
+  before(:all) do
+    Post ||= Class.new(TinyRecord::Base)
+    User ||= Class.new(TinyRecord::Base)
   end
 
   it "has correct table name" do
@@ -27,5 +27,8 @@ describe TinyRecord, "sql generate" do
     expect(Post.where(id: 2).to_sql).to eq "SELECT * FROM posts WHERE posts.id = '2'"
   end
 
-  
+  it "can generate correct with multiple condition" do
+    expect(Post.where(id: 2, content: "hello").to_sql).to eq "SELECT * FROM posts WHERE posts.id = '2' AND posts.content = 'hello'"
+  end
+
 end

@@ -10,8 +10,18 @@ module TinyRecord
         arel_table.project Arel.sql("*")
       end
 
-      def where(opt)
-        arel_table.where(arel_table[:id].eq(2)).project Arel.sql("*")
+      def where(options)
+        scope = arel_table
+        options.each do |k, v|
+          scope = scope.where(arel_table[k].eq(v))
+        end
+        scope.project Arel.sql("*")
+      end
+
+      def count
+        query = Arel::SelectManager.new(arel_table.engine).from(self.table_name).project("*")
+        p query.to_sql
+        @connection.execute(query.to_sql)[0]['count'].to_i
       end
 
       def table_name

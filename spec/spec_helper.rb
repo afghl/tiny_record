@@ -2,7 +2,6 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'tiny_record'
 
-
 # inherit matcher
 RSpec::Matchers.define :inherit_from do |superclass|
   match do |klass|

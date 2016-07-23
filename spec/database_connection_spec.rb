@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe TinyRecord, "database connection" do
-  before do
-    class Post < TinyRecord::Base; end
-    class User < TinyRecord::Base; end
+  before(:all) do
+    Post ||= Class.new(TinyRecord::Base)
+    User ||= Class.new(TinyRecord::Base)
   end
 
   it "has connection" do
@@ -19,4 +19,5 @@ describe TinyRecord, "database connection" do
   it "can get columns information" do
     expect(Post.connection.columns(Post.table_name)).to be_a Array
   end
+
 end
