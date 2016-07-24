@@ -10,4 +10,9 @@ describe TinyRecord, "querying" do
     expect(Post.count).to eq 0
   end
 
+  it "can create a record" do
+    expect(Post.count).to eq 0
+    Post.create(title: "Hello TinyRecord!")
+    expect(Post.count).to eq 1
+  end
 end

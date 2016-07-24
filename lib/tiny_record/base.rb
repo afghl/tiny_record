@@ -1,28 +1,14 @@
 module TinyRecord
   class Base
+    include Querying
+    extend Querying::ClassMethods
+
+
+    attr_accessor :attributes
 
     class << self
       def connection
         @connection ||= ConnectionAdapters::Mysql2Adapter.new
-      end
-
-      def all
-        arel_table.project Arel.sql("*")
-      end
-
-      def where(options)
-        scope = arel_table
-        options.each do |k, v|
-          scope = scope.where(arel_table[k].eq(v))
-        end
-        scope.project Arel.sql("*")
-      end
-
-      def count
-        query = Arel::SelectManager.new(arel_table.engine).from(self.table_name).project(Arel.star.count)
-        result = @connection.exec_query(query.to_sql)
-        # TODO: refactor this
-        result.rows.first[result.columns.first]
       end
 
       def table_name
@@ -31,6 +17,16 @@ module TinyRecord
 
       def arel_table
         @arel_table ||= Arel::Table.new(table_name, self)
+      end
+    end
+
+    def initialize(attributes = {})
+      @attributes = attributes
+    end
+
+    def attributes_for_arel
+      attributes.map do |column_name, column_key|
+        [self.class.arel_table[column_name], column_key]
       end
     end
   end
