@@ -32,19 +32,22 @@ module TinyRecord
       end
 
       def columns(table_name)
-        sql = "SHOW FULL FIELDS FROM #{table_name}"
+        @columns ||= begin
+          sql = "SHOW FULL FIELDS FROM #{table_name}"
 
-        results = execute sql
-        results.to_a
+          result = exec_query sql
+          result.columns
+        end
       end
 
       def execute(sql)
-        results = @client.query sql
-        p results.to_a
-        results
+        @client.query sql
       end
 
+      def exec_query(sql)
+        result = execute(sql)
+        Result.new(result.fields, result.to_a)
+      end
     end
-
   end
 end

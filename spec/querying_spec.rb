@@ -6,7 +6,7 @@ describe TinyRecord, "querying" do
     User ||= Class.new(TinyRecord::Base)
   end
 
-  it "can get record count of a model" do
+  it "can get record count of a table" do
     expect(Post.count).to eq 0
   end
 

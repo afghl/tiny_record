@@ -19,9 +19,10 @@ module TinyRecord
       end
 
       def count
-        query = Arel::SelectManager.new(arel_table.engine).from(self.table_name).project("*")
-        p query.to_sql
-        @connection.execute(query.to_sql)[0]['count'].to_i
+        query = Arel::SelectManager.new(arel_table.engine).from(self.table_name).project(Arel.star.count)
+        result = @connection.exec_query(query.to_sql)
+        # TODO: refactor this
+        result.rows.first[result.columns.first]
       end
 
       def table_name
