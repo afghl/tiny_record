@@ -3,6 +3,10 @@ module TinyRecord
   # This module handle the query generation.
   # After generated the correct sql, pass it to connection and execute
   module Querying
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+
     module ClassMethods
       def all
         arel_table.project Arel.sql("*")
@@ -28,8 +32,13 @@ module TinyRecord
         insert_manager = Arel::InsertManager.new arel_table.engine
         insert_manager.into arel_table
         insert_manager.insert new_record.attributes_for_arel
-        p insert_manager.to_sql
-        @connection.execute insert_manager.to_sql
+        connection.execute insert_manager.to_sql
+      end
+
+      def delete_all
+        delete_manager = Arel::DeleteManager.new arel_table.engine
+        delete_manager.from arel_table
+        connection.execute delete_manager.to_sql
       end
     end
   end

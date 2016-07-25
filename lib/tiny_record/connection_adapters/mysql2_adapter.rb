@@ -36,7 +36,7 @@ module TinyRecord
           sql = "SHOW FULL FIELDS FROM #{table_name}"
 
           result = exec_query sql
-          result.columns
+          result.rows.map { |c| Column.new(c["Field"]) }
         end
       end
 

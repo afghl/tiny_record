@@ -1,7 +1,7 @@
 module TinyRecord
   class Base
     include Querying
-    extend Querying::ClassMethods
+    include Attributes
 
 
     attr_accessor :attributes

@@ -6,6 +6,10 @@ describe TinyRecord, "querying" do
     User ||= Class.new(TinyRecord::Base)
   end
 
+  before do
+    Post.delete_all
+  end
+
   it "can get record count of a table" do
     expect(Post.count).to eq 0
   end
@@ -14,5 +18,12 @@ describe TinyRecord, "querying" do
     expect(Post.count).to eq 0
     Post.create(title: "Hello TinyRecord!")
     expect(Post.count).to eq 1
+  end
+
+  it "can delete all records" do
+    Post.create(title: "Hello TinyRecord!")
+    expect(Post.count).to eq 1
+    Post.delete_all
+    expect(Post.count).to eq 0
   end
 end
