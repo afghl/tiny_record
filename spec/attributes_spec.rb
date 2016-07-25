@@ -15,4 +15,9 @@ describe TinyRecord, "attributes" do
     post = Post.new
     expect(post.id).to be_nil
   end
+
+  it "can also write attributes" do
+    post = Post.new
+    expect(post.title = "hello").to eq "hello"
+  end
 end

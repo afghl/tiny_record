@@ -1,4 +1,5 @@
 module TinyRecord
+  
   # This class encapsulates a Result returned from calling +exec_query+ on any
   # database connection adapter.
   class Result

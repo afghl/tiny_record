@@ -1,7 +1,7 @@
 module TinyRecord
   class Base
     include Querying
-    include Attributes
+    include AttributeMethods
 
 
     attr_accessor :attributes
@@ -22,6 +22,8 @@ module TinyRecord
 
     def initialize(attributes = {})
       @attributes = attributes
+
+      self.class.define_attribute_methods
     end
 
     def attributes_for_arel

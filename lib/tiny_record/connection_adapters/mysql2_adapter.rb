@@ -4,20 +4,19 @@ module TinyRecord
     class Mysql2Adapter
 
       def initialize
-        @client = Mysql2::Client.new(host: "localhost", username: "root", database: "tiny_record")
+        @client = Mysql2::Client.new(
+                    host: "localhost",
+                    username: "root",
+                    database: "tiny_record"
+                  )
       end
 
       def visitor
-        @visitor ||= Arel::Visitors::MySQL.new self
+        @visitor ||= Arel::Visitors::MySQL.new(self)
       end
 
-      def quote_table_name(arg)
-        arg
-      end
-
-      def quote_column_name(arg)
-        arg
-      end
+      def quote_table_name(arg); arg; end
+      def quote_column_name(arg); arg; end
 
       def table_exists?(name)
         true
@@ -35,8 +34,7 @@ module TinyRecord
         @columns ||= begin
           sql = "SHOW FULL FIELDS FROM #{table_name}"
 
-          result = exec_query sql
-          result.rows.map { |c| Column.new(c["Field"]) }
+          exec_query(sql).rows.map { |c| Column.new(c["Field"]) }
         end
       end
 
