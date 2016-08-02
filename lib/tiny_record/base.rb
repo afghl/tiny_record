@@ -3,9 +3,9 @@ module TinyRecord
     include Querying
     include AttributeMethods
 
-
     attr_accessor :attributes
 
+    # TODO: move these methods to another module
     class << self
       def connection
         @connection ||= ConnectionAdapters::Mysql2Adapter.new
@@ -20,8 +20,8 @@ module TinyRecord
       end
     end
 
-    def initialize(attributes = {})
-      @attributes = attributes
+    def initialize(user_attributes = {})
+      @attributes = user_attributes
 
       self.class.define_attribute_methods
     end
