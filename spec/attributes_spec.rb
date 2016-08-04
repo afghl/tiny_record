@@ -16,8 +16,11 @@ describe TinyRecord, "attributes" do
     expect(post.id).to be_nil
   end
 
-  it "can also write attributes" do
+  it "generate attributes related methods correctly" do
     post = Post.new
-    expect(post.title = "hello").to eq "hello"
+    expect(post).to respond_to :title
+    expect(post).to respond_to :title=
+    expect(post).to respond_to :content=
+    expect(post).not_to respond_to :foo_bar
   end
 end
