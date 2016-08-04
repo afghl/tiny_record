@@ -14,7 +14,8 @@ describe TinyRecord do
   end
 
   it "can get proper instance" do
-    new_post = Post.new(title: "Hello TinyRecord!")
+    new_post = Post.new(title: "Hello TinyRecord!", foo: "bar")
     expect(new_post.attributes[:title]).to eq "Hello TinyRecord!"
+    expect(new_post.attributes[:foo]).to be_nil
   end
 end

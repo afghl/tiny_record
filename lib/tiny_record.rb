@@ -8,9 +8,8 @@ require "tiny_record/connection_adapters/schema_cache"
 require "tiny_record/connection_adapters/mysql2_adapter"
 require "tiny_record/result"
 require "tiny_record/querying"
-require "tiny_record/attribute_methods/read"
-require "tiny_record/attribute_methods/write"
 require "tiny_record/attribute_methods"
+require "tiny_record/attribute_set"
 require "tiny_record/base"
 
 # # for debugging

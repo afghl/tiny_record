@@ -23,4 +23,18 @@ describe TinyRecord, "attributes" do
     expect(post).to respond_to :content=
     expect(post).not_to respond_to :foo_bar
   end
+
+  it "has default attribute values" do
+    post = Post.new
+    expect(post.id).to be_nil
+    expect(post.title).to be_nil
+    expect(post.content).to be_nil
+    expect(post.author).to be_nil
+  end
+
+  it "can write and read attribute correctly" do
+    post = Post.new
+    post.title = "my_title"
+    expect(post.title).to eq "my_title"
+  end
 end

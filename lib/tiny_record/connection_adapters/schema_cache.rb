@@ -5,6 +5,7 @@ module TinyRecord
     class SchemaCache
       def initialize(connection)
         @connection = connection
+        @columns    = {}
       end
 
       def table_exists?(table_name)
@@ -12,7 +13,7 @@ module TinyRecord
       end
 
       def columns(table_name)
-        # @columns[table_name] ||= @connection.columns table_name
+        @columns[table_name] ||= @connection.columns table_name
       end
 
       def columns_hash(table_name)

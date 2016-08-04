@@ -11,8 +11,9 @@ module TinyRecord
         end
       end
 
+      private
       def _read_attribute(name)
-        nil
+        @attributes[name]
       end
     end
   end

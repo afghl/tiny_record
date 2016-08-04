@@ -11,8 +11,9 @@ module TinyRecord
         end
       end
 
+      private
       def _write_arribute(name, value)
-        value
+        @attributes.write_value(name, value)
       end
     end
   end

@@ -1,3 +1,6 @@
+require "tiny_record/attribute_methods/read"
+require "tiny_record/attribute_methods/write"
+
 module TinyRecord
 
   # handle the attributes related methods
