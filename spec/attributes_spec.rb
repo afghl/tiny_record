@@ -7,8 +7,7 @@ describe TinyRecord, "attributes" do
   end
 
   it "has all columns name of a table" do
-    names = Post.column_names
-    expect(names).to eq ["id", "title", "content", "author"]
+    expect(Post.column_names).to eq ["id", "title", "content", "author", "comment_count"]
   end
 
   it "respond to column as method call" do
