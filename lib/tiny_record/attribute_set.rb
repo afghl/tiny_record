@@ -15,15 +15,11 @@ module TinyRecord
     end
 
     def [](name)
-      attributes[name]
+      @attributes[name]
     end
 
     def write_value(name, value)
-      attributes[name] = value
+      @attributes[name] = value
     end
-
-    protected
-
-    attr_accessor :attributes
   end
 end

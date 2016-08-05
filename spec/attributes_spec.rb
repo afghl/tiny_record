@@ -35,6 +35,8 @@ describe TinyRecord, "attributes" do
   it "can write and read attribute correctly" do
     post = Post.new
     post.title = "my_title"
+    post.content = "my content"
     expect(post.title).to eq "my_title"
+    expect(post.content).to eq "my content"
   end
 end
