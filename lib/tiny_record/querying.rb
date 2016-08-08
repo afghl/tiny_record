@@ -32,9 +32,8 @@ module TinyRecord
         insert_manager = Arel::InsertManager.new arel_table.engine
         insert_manager.into arel_table
         insert_manager.insert new_record.attributes_for_arel
-        sql = insert_manager.to_sql
-        p sql
-        connection.execute sql
+        
+        connection.execute insert_manager.to_sql
       end
 
       def delete_all
