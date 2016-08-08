@@ -29,11 +29,17 @@ module TinyRecord
 
       def create(attributes = {})
         new_record = new attributes
-        insert_manager = Arel::InsertManager.new arel_table.engine
-        insert_manager.into arel_table
-        insert_manager.insert new_record.attributes_for_arel
-        
-        connection.execute insert_manager.to_sql
+        im = Arel::InsertManager.new arel_table.engine
+        im.into arel_table
+
+        attributes = new_record.attributes_for_arel
+        if attributes.empty?
+          im.values = Arel.sql(connection.empty_insert_statement_value)
+        else
+          im.insert new_record.attributes_for_arel
+        end
+
+        connection.execute im.to_sql
       end
 
       def delete_all

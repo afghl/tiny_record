@@ -43,9 +43,11 @@ module TinyRecord
     def attributes_for_arel
       attr_column_names = self.class.column_names - ["id"]
 
-      attr_column_names.map do |name|
+      attrs = attr_column_names.map do |name|
         [self.class.arel_table[name], attributes[name]]
       end
+
+      attrs.select { |_, value| !value.nil? }
     end
 
     private

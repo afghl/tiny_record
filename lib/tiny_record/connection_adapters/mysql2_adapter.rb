@@ -38,6 +38,12 @@ module TinyRecord
         end
       end
 
+      # for example: when insert a record with no values,
+      # a mysql sql should be: INSERT INTO `posts` VALUES ()
+      def empty_insert_statement_value
+        "VALUES ()"
+      end
+
       def execute(sql)
         @client.query sql
       end

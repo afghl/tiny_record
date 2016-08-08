@@ -1,3 +1,9 @@
+
+# for debugging
+begin
+  require "pry"
+rescue LoadError
+end
 require "arel"
 require "mysql2"
 
@@ -11,9 +17,3 @@ require "tiny_record/querying"
 require "tiny_record/attribute_methods"
 require "tiny_record/attribute_set"
 require "tiny_record/base"
-
-# # for debugging
-# begin
-#   require "pry"
-# rescue LoadError
-# end
