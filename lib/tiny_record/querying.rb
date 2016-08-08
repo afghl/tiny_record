@@ -27,8 +27,8 @@ module TinyRecord
         result.rows.first[result.columns.first]
       end
 
-      def create(attributes = {})
-        new_record = new attributes
+      def create(user_attributes = {})
+        new_record = new user_attributes
         im = Arel::InsertManager.new arel_table.engine
         im.into arel_table
 
