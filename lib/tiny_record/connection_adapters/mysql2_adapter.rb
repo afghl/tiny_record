@@ -1,7 +1,6 @@
 module TinyRecord
   module ConnectionAdapters
-
-    class Mysql2Adapter
+    class Mysql2Adapter < AbstractAdapter
 
       def initialize
         @client = Mysql2::Client.new(
@@ -30,11 +29,18 @@ module TinyRecord
         @schema_cache ||= SchemaCache.new(self)
       end
 
+      # TODO: 这里不需要cache， 因为在schema_cache里保证里只会调用一次
       def columns(table_name)
+
         @columns ||= begin
           sql = "SHOW FULL FIELDS FROM #{table_name}"
 
-          exec_query(sql).rows.map { |c| Column.new(c["Field"]) }
+          exec_query(sql).rows.map do |field|
+            field_name = field["Field"]
+            sql_type = field["Type"]
+            cast_type = lookup_cast_type(field["Type"])
+            Column.new(field_name, sql_type, cast_type)
+          end
         end
       end
 
@@ -52,6 +58,7 @@ module TinyRecord
         result = execute(sql)
         Result.new(result.fields, result.to_a)
       end
+
     end
   end
 end
