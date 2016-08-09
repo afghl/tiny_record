@@ -3,11 +3,11 @@ module TinyRecord
 
     private
 
-    def lookup_cast_type(sql_type) # :nodoc:
+    def lookup_cast_type(sql_type)
       type_map.lookup(sql_type)
     end
 
-    def type_map # :nodoc:
+    def type_map
       @type_map ||= Type::TypeMap.new.tap do |mapping|
         initialize_type_map(mapping)
       end

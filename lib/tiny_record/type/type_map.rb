@@ -6,7 +6,6 @@ module TinyRecord
         @mapping = {}
       end
 
-
       # TODO
       def lookup(sql_type)
         matching_pair = @mapping.reverse_each.detect do |key, _|
