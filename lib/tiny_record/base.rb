@@ -25,6 +25,7 @@ module TinyRecord
     end
 
     private
+    
     def _init_user_attributes(user_attributes)
       user_attributes.each do |name, value|
         send("#{name}=", value) if respond_to? "#{name}="

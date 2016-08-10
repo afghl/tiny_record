@@ -26,4 +26,13 @@ describe TinyRecord, "querying" do
     Post.delete_all
     expect(Post.count).to eq 0
   end
+
+  it "can save and destroy records" do
+    Post.delete_all
+    post = Post.new title: 'Hello TinyRecord!'
+    post.save
+    expect(Post.count).to eq 1
+    Post.delete_all
+    expect(Post.count).to eq 0
+  end
 end
