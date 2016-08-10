@@ -12,7 +12,6 @@ module TinyRecord
       self.class.define_attribute_methods
 
       _init_user_attributes(user_attributes)
-      debugger
     end
 
     def attributes_for_arel

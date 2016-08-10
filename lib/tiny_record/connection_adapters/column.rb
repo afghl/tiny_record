@@ -4,7 +4,7 @@ module TinyRecord
     class Column
       attr_reader :name
 
-      def initialize(name)
+      def initialize(name, sql_type, cast_type)
         @name = name
       end
     end
