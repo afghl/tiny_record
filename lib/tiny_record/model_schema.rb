@@ -19,11 +19,15 @@ module TinyRecord
       end
 
       def _default_attributes
-        @_default_attributes ||= AttributeSet.build_from_database(column_names)
+        @_default_attributes ||= AttributeSet.build_from_database(columns)
+      end
+
+      def columns
+        schema_cache.columns(table_name)
       end
 
       def column_names
-        schema_cache.columns(table_name).map(&:name)
+        columns.map(&:name)
       end
 
       def schema_cache

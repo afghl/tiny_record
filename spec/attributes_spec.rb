@@ -38,4 +38,10 @@ describe TinyRecord, "attributes" do
     expect(post.title).to eq "my_title"
     expect(post.content).to eq "my content"
   end
+
+  it "can transform attribute into correct type" do
+    post = Post.new
+    post.comment_count = "52"
+    expect(post.comment_count).to eq 52
+  end
 end

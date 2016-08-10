@@ -7,13 +7,13 @@ module TinyRecord
 
       module ClassMethods
         def define_method_attribute(name)
-          define_method(name) { _read_attribute name }
+          define_method(name) { read_attribute name }
         end
       end
 
       private
-      def _read_attribute(name)
-        @attributes[name]
+      def read_attribute(name)
+        @attributes.fetch_value(name.intern)
       end
     end
   end
