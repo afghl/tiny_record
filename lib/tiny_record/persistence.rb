@@ -5,6 +5,7 @@ module TinyRecord
       base.extend(ClassMethods)
     end
 
+    # TODO: can update record
     def save
       _create_record
     end
