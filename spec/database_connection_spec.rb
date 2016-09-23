@@ -6,10 +6,6 @@ describe TinyRecord, "database connection" do
     User ||= Class.new(TinyRecord::Base)
   end
 
-  it "has connection" do
-    expect(Post.connection).to be_a TinyRecord::ConnectionAdapters::Mysql2Adapter
-  end
-
   it "can execute sql statement directly" do
     expect do
       Post.connection.execute("SELECT * FROM posts;")

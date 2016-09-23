@@ -11,14 +11,6 @@ describe TinyRecord, "sql generate" do
     expect(User.table_name).to eq "users"
   end
 
-  it "has an instance of Arel table for database schema projection" do
-    expect(Post.arel_table).to be_a Arel::Table
-  end
-
-  it "respond to all method" do
-    expect(Post.all).to be_a Arel::SelectManager
-  end
-
   it "generate correct sql in all method" do
     expect(Post.all.to_sql).to eq "SELECT * FROM posts"
   end
